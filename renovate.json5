@@ -16,8 +16,7 @@
   "packageRules": [
     {
       "matchPackageNames": [
-        "ghcr.io/elmariovi/net-nomad",
-        "ghcr.io/elmariovi/proton"
+        "ghcr.io/elmariovi/net-nomad"
       ],
       "enabled": false
     },

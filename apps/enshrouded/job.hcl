@@ -66,17 +66,17 @@ job "enshrouded" {
         destination = "/game"
       }
       config {
-        image              = "ghcr.io/elmariovi/proton:latest"
+        image              = "ghcr.io/elmariovi/proton:10-30"
         image_pull_timeout = "30m"
-        entrypoint = ["/local/entrypoint.sh"]
         volumes = [
           "local/config.json:/game/enshrouded_server.json"
         ]
       }
-      template {
-        data        = var.enshrouded_entrypoint
-        destination = "local/entrypoint.sh"
-        perms       = "755"
+      environment {
+        APP_ID = "2278520"
+        BACKGROUND_PROCESS = "true"
+        EXE_PATH = "/game/enshrouded_server.exe"
+        READ_LOGS_FILE = "/game/logs/enshrouded_server.log"
       }
       template {
         data        = var.enshrouded_config
