@@ -1,0 +1,76 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "enabledManagers": ["custom.regex"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["(^|/)job\\.hcl$"],
+      "matchStrings": [
+        "image\\s*=\\s*\"(?<depName>[^:]+):(?<currentValue>[^\"]+)\""
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "ghcr.io/elmariovi/net-nomad",
+        "ghcr.io/elmariovi/proton"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Nginx - mantener tag alpine",
+      "matchPackageNames": ["docker.io/nginx"],
+      "allowedVersions": "/^[\\d._]+-alpine$/",
+      "versioning": "loose"
+    },
+    {
+      "description": "Postgres - mantener tag alpine",
+      "matchPackageNames": ["docker.io/postgres"],
+      "allowedVersions": "/^[\\d._]+-alpine$/",
+      "versioning": "loose"
+    },
+    {
+      "description": "Coturn - mantener tag alpine",
+      "matchPackageNames": ["docker.io/coturn/coturn"],
+      "allowedVersions": "/^[\\d._]+-alpine$/",
+      "versioning": "loose"
+    },
+    {
+      "description": "Postgres Immich - solo updates dentro de v14 con vectorchord y pgvectors",
+      "matchPackageNames": ["ghcr.io/immich-app/postgres"],
+      "allowedVersions": "/^14-vectorchord[\\d.]+-pgvectors[\\d.]+$/",
+      "versioning": "loose"
+    },
+    {
+      "description": "Valkey - mantener tag alpine",
+      "matchPackageNames": ["docker.io/valkey/valkey"],
+      "allowedVersions": "/^[\\d._]+-alpine$/",
+      "versioning": "loose"
+    },
+    {
+      "description": "Grafana - ignorar builds con sufijo numérico",
+      "matchPackageNames": ["docker.io/grafana/grafana"],
+      "allowedVersions": "/^\\d+\\.\\d+(\\.\\d+)?(-[a-z]+)?$/",
+      "versioning": "loose"
+    },
+    {
+      "description": "qbittorrent - versiones con sufijo de build -N, ignorar variantes lt2",
+      "matchPackageNames": ["ghcr.io/qbittorrent/docker-qbittorrent-nox"],
+      "allowedVersions": "/^[\\d.]+-\\d+$/",
+      "versioning": "loose"
+    },
+    {
+      "description": "Eclipse Temurin - versiones con formato X.Y.Z_PATCH-jre",
+      "matchPackageNames": ["docker.io/eclipse-temurin"],
+      "allowedVersions": "/^[\\d._]+-jre$/",
+      "versioning": "loose"
+    }
+  ],
+  "onboarding": false,
+  "requireConfig": "ignored",
+  "platform": "local"
+}
