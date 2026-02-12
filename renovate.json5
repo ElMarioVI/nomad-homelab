@@ -33,12 +33,6 @@
       "versioning": "loose"
     },
     {
-      "description": "Coturn - mantener tag alpine",
-      "matchPackageNames": ["docker.io/coturn/coturn"],
-      "allowedVersions": "/^[\\d._]+-alpine$/",
-      "versioning": "loose"
-    },
-    {
       "description": "Postgres Immich - solo updates dentro de v14 con vectorchord y pgvectors",
       "matchPackageNames": ["ghcr.io/immich-app/postgres"],
       "allowedVersions": "/^14-vectorchord[\\d.]+-pgvectors[\\d.]+$/",

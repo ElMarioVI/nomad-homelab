@@ -14,7 +14,39 @@ variable "element_config" {
   "default_theme": "dark",
   "room_directory": {
     "servers": ["matrix.__DOMAIN__"]
-  }
+  },
+  "show_labs_settings": true,
+  "features": {
+    "feature_group_calls": true,
+    "feature_video_rooms": true,
+    "feature_element_call_video_rooms": true,
+    "feature_pinning": true,
+    "feature_notifications": true,
+    "feature_ask_to_join": true,
+    "feature_new_room_decoration_ui": true
+  },
+  "element_call": {
+    "use_exclusively": true,
+    "participant_limit": 8,
+    "brand": "Element Call"
+  },
+  "jitsi": {
+    "preferred_domain": ""
+  },
+  "setting_defaults": {
+    "urlPreviewsEnabled": true,
+    "breadcrumbs": true,
+    "UIFeature.registration": false,
+    "UIFeature.passwordReset": false,
+    "UIFeature.deactivate": false
+  },
+  "embedded_pages": {
+    "login_for_welcome": true
+  },
+  "sso_redirect_options": {
+    "immediate": false
+  },
+  "map_style_url": "https://api.maptiler.com/maps/streets/style.json?key=fU3vlMsMn4Jb6dnEIFsx"
 }
 EOT
 }

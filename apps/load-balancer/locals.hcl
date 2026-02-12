@@ -43,8 +43,26 @@ locals {
       destination = "local/conf/matrix.conf"
     },
     {
-      data        = var.element-conf
-      destination = "local/conf/element.conf"
+      data        = var.matrix-web-conf
+      destination = "local/conf/matrix-web.conf"
+    },
+    {
+      data        = var.matrix-auth-conf
+      destination = "local/conf/matrix-auth.conf"
+    },
+    {
+      data        = var.matrix-admin-conf
+      destination = "local/conf/matrix-admin.conf"
+    },
+    {
+      data          = var.matrix-rtc-confd
+      destination   = "local/conf.d/matrix-rtc.conf"
+      change_mode   = "signal"
+      change_signal = "SIGHUP"
+    },
+    {
+      data        = var.matrix-rtc-conf
+      destination = "local/conf/matrix-rtc.conf"
     }
   ]
 }
