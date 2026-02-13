@@ -63,6 +63,14 @@ locals {
     {
       data        = var.matrix-rtc-conf
       destination = "local/conf/matrix-rtc.conf"
+    },
+    {
+      data        = var.invidious-conf
+      destination = "local/conf/invidious.conf"
+    },
+    {
+      data        = var.materialious-conf
+      destination = "local/conf/materialious.conf"
     }
   ]
 }
