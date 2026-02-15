@@ -12,7 +12,7 @@ locals {
     MAC_ENSHROUD  = var.nomad_job_vars.macs.enshroud
     MAC_MINECRAFT = var.nomad_job_vars.macs.minecraft
     MAC_HYTALE    = var.nomad_job_vars.macs.hytale
-    MAC_INVIDIOUS = var.nomad_job_vars.macs.invidious
+    MAC_MATERIALIOUS = var.nomad_job_vars.macs.materialious
   }
 
   job_files = fileset("${path.module}", "**/job.hcl")
