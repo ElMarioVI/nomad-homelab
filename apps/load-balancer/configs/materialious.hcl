@@ -1,6 +1,8 @@
 variable "materialious-conf" {
   default = <<EOT
 
+underscores_in_headers on;
+
 add_header X-XSS-Protection "1; mode=block" always;
 add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-Content-Type-Options "nosniff" always;
@@ -9,12 +11,6 @@ add_header Permissions-Policy "accelerometer=(), autoplay=(self), camera=(), dis
 
 location /metrics {
   return 403;
-}
-
-location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|webp|avif)$ {
-  proxy_pass http://$upstream;
-  expires 30d;
-  add_header Cache-Control "public, immutable" always;
 }
 
 location / {

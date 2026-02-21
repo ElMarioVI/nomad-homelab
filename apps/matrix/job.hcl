@@ -75,7 +75,7 @@ job "matrix" {
       }
 
       config {
-        image = "docker.io/postgres:18.1-alpine"
+        image = "docker.io/postgres:18.2-alpine"
       }
 
       template {
@@ -341,7 +341,7 @@ EOH
       }
 
       config {
-        image = "docker.io/postgres:18.1-alpine"
+        image = "docker.io/postgres:18.2-alpine"
       }
 
       template {
