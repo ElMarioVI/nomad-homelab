@@ -15,12 +15,6 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": [
-        "ghcr.io/elmariovi/net-nomad"
-      ],
-      "enabled": false
-    },
-    {
       "description": "Nginx - mantener tag alpine",
       "matchPackageNames": ["docker.io/nginx"],
       "allowedVersions": "/^[\\d._]+-alpine$/",

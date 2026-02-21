@@ -37,7 +37,7 @@ job "hytale" {
         sidecar = true
       }
       config {
-        image      = "ghcr.io/elmariovi/net-nomad:latest"
+        image      = "ghcr.io/mariojcr/net-nomad:1.0.0"
         cap_add    = ["NET_ADMIN"]
       }
       template {

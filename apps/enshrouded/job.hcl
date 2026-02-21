@@ -44,7 +44,7 @@ job "enshrouded" {
         sidecar = true
       }
       config {
-        image      = "ghcr.io/elmariovi/net-nomad:latest"
+        image      = "ghcr.io/mariojcr/net-nomad:1.0.0"
         cap_add    = ["NET_ADMIN"]
       }
       template {
@@ -66,7 +66,7 @@ job "enshrouded" {
         destination = "/game"
       }
       config {
-        image              = "ghcr.io/elmariovi/proton:10-30"
+        image              = "ghcr.io/mariojcr/proton:10-30"
         image_pull_timeout = "30m"
         volumes = [
           "local/config.json:/game/enshrouded_server.json"
