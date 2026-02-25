@@ -32,3 +32,11 @@ FW_ALLOW_IN="0.0.0.0/0:udp,{{ range nomadService "load-balancer-http" }}{{ .Addr
 FW_ALLOW_OUT="{{ range nomadService "matrix-http" }}{{ .Address }}:tcp:{{ .Port }},{{ end }}{{ range nomadService "load-balancer-http" }}{{ .Address }}:tcp:443,{{ end }}0.0.0.0/0:udp:19302"
 EOH
 }
+
+variable "call_firewall_config" {
+  description = "Config for Element Call firewall rules"
+  default     = <<EOH
+FW_DNS="{{ with nomadVar "nomad/jobs" }}{{ .dns_server_address }}{{ end }}"
+FW_ALLOW_IN="{{ env "attr.unique.network.ip-address" }}:tcp:8080,{{ range nomadService "load-balancer-http" }}{{ .Address }}:tcp:8080{{ end }}"
+EOH
+}

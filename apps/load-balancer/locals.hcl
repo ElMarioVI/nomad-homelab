@@ -65,6 +65,10 @@ locals {
       destination = "local/conf/matrix-rtc.conf"
     },
     {
+      data        = var.matrix-call-conf
+      destination = "local/conf/matrix-call.conf"
+    },
+    {
       data        = var.materialious-conf
       destination = "local/conf/materialious.conf"
     }

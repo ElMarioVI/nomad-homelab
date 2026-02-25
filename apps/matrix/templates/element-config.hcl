@@ -26,6 +26,7 @@ variable "element_config" {
     "feature_new_room_decoration_ui": true
   },
   "element_call": {
+    "url": "https://matrix-call.__DOMAIN__",
     "use_exclusively": true,
     "participant_limit": 8,
     "brand": "Element Call"
@@ -44,7 +45,7 @@ variable "element_config" {
     "login_for_welcome": true
   },
   "sso_redirect_options": {
-    "immediate": false
+    "immediate": true
   },
   "map_style_url": "https://api.maptiler.com/maps/streets/style.json?key=fU3vlMsMn4Jb6dnEIFsx"
 }

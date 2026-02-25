@@ -14,7 +14,7 @@ keys:
   livekit-key: "{{ with nomadVar "nomad/jobs/matrix" }}{{ .livekit_secret }}{{ end }}"
 
 room:
-  auto_create: false
+  auto_create: true
   empty_timeout: 300
   departure_timeout: 20
 EOT

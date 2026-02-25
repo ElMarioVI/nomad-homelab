@@ -118,12 +118,7 @@ experimental_features:
   msc4143_enabled: true                    # MatrixRTC con backend LiveKit
   msc4222_enabled: true                    # state_after en sync v2
 
-  # === Sync y Performance ===
-  msc3575_enabled: true                    # Sliding Sync - sync ultrarrápido (RECOMENDADO)
-
   # === Hilos y Mensajería ===
-  msc3773_enabled: true                    # Notificaciones de threads/hilos
-  msc3381_polls_enabled: true              # Encuestas/Polls en salas
   msc2654_enabled: true                    # Contadores de mensajes no leídos mejorados
   msc1767_enabled: true                    # Extensible Events - mensajes más ricos
   msc3874_enabled: true                    # Filtrado de mensajes por tipo de relación

@@ -109,7 +109,7 @@ EOH
       }
 
       config {
-        image = "ghcr.io/element-hq/synapse:v1.147.1"
+        image = "ghcr.io/element-hq/synapse:v1.148.0"
         volumes = [
           "local/homeserver.yaml:/data/homeserver.yaml:ro",
           "local/log.config:/data/log.config:ro",
@@ -219,7 +219,7 @@ EOH
       driver = "podman"
 
       config {
-        image = "ghcr.io/element-hq/element-web:v1.12.10"
+        image = "ghcr.io/element-hq/element-web:v1.12.11"
         volumes = [
           "local/config.json:/app/config.json:ro",
         ]
@@ -375,7 +375,7 @@ EOH
       }
 
       config {
-        image   = "ghcr.io/element-hq/matrix-authentication-service:1.11.0"
+        image   = "ghcr.io/element-hq/matrix-authentication-service:1.12.0"
         volumes = [
           "local/config.yaml:/config/config.yaml:ro",
         ]
@@ -497,6 +497,87 @@ EOH
       }
     }
 
+  }
+
+  group "call" {
+
+    service {
+      port         = 8080
+      address_mode = "alloc"
+      name         = "element-call-http"
+      provider     = "nomad"
+      check {
+        address_mode = "alloc"
+        type         = "http"
+        port         = 8080
+        path         = "/"
+        interval     = "30s"
+        timeout      = "5s"
+      }
+      tags = [
+        "nginx_enable=true",
+        "nginx_domain=matrix-call.__DOMAIN__",
+        "nginx_certificate=__DOMAIN__",
+        "nginx_custom_config=matrix-call"
+      ]
+    }
+
+    network {
+      mode = "cni/containers"
+      cni {
+        args = {
+          NOMAD_JOB_HOSTNAME = "matrix-call"
+        }
+      }
+    }
+
+    task "network-rules" {
+      driver = "podman"
+      lifecycle {
+        hook    = "prestart"
+        sidecar = true
+      }
+      config {
+        image   = "ghcr.io/mariojcr/net-nomad:1.0.0"
+        cap_add = ["NET_ADMIN"]
+      }
+      template {
+        data        = var.call_firewall_config
+        destination = "local/firewall.env"
+        env         = true
+      }
+      resources {
+        cpu        = 10
+        memory     = 10
+        memory_max = 16
+      }
+    }
+
+    task "element-call" {
+      driver = "podman"
+
+      config {
+        image = "ghcr.io/element-hq/element-call:v0.17.0"
+        volumes = [
+          "local/config.json:/app/config.json:ro",
+        ]
+      }
+
+      env {
+        ELEMENT_CALL_PORT = "8080"
+      }
+
+      template {
+        data        = var.element_call_config
+        destination = "local/config.json"
+        change_mode = "restart"
+      }
+
+      resources {
+        cpu    = 100
+        memory = 128
+      }
+    }
   }
 }
 
