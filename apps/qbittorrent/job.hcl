@@ -117,7 +117,7 @@ job "qbittorrent" {
       driver = "podman"
 
       config {
-        image      = "ghcr.io/martabal/qbittorrent-exporter:v1.13.2"
+        image      = "ghcr.io/martabal/qbittorrent-exporter:v1.13.3"
       }
 
       template {

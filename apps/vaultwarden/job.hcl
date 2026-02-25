@@ -70,7 +70,7 @@ job "vaultwarden" {
       }
 
       config {
-        image = "ghcr.io/dani-garcia/vaultwarden:1.35.3"
+        image = "ghcr.io/dani-garcia/vaultwarden:1.35.4"
       }
 
       template {
